@@ -49,19 +49,17 @@ Skip if the branch already exists.
 
 ---
 
-# PHASE 3 — Add GitHub Actions workflows
+# PHASE 3 — Add GitHub Actions workflow
 
-## 3a. Add `deploy-main.yml` to the default branch
-
-Use `mcp__github__push_files` targeting the **default branch** with path `.github/workflows/deploy-main.yml`:
+Use `mcp__github__push_files` targeting the **default branch** with path `.github/workflows/deploy.yml`:
 
 ```yaml
-name: Deploy Main Site
+name: Deploy
 
 on:
   push:
     branches:
-      - main
+      - '**'
 
 jobs:
   deploy:
@@ -74,38 +72,15 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Deploy main site to gh-pages root
+        if: github.ref_name == 'main'
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./
           keep_files: true
-```
-
-Commit message: `Add GitHub Actions workflow to deploy main branch to GitHub Pages`
-
-## 3b. Add `branch-preview.yml` to the default branch
-
-Use `mcp__github__push_files` targeting the **default branch** with path `.github/workflows/branch-preview.yml`:
-
-```yaml
-name: Branch Preview Deploy
-
-on:
-  push:
-    branches-ignore:
-      - main
-
-jobs:
-  deploy-preview:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
 
       - name: Deploy branch preview to gh-pages
+        if: github.ref_name != 'main'
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -114,7 +89,7 @@ jobs:
           destination_dir: previews/${{ github.ref_name }}
 ```
 
-Commit message: `Add GitHub Actions workflow for branch preview deploys`
+Commit message: `Add GitHub Actions deploy workflow for main site and branch previews`
 
 ---
 
@@ -302,8 +277,7 @@ Stage and commit all new and modified files:
 git add .
 git commit -m "Add preview workflows, WCAG 2.1 accessibility improvements, and privacy/cookie compliance
 
-- .github/workflows/deploy-main.yml: deploys main branch to gh-pages root
-- .github/workflows/branch-preview.yml: deploys every other branch to /previews/<branch>/
+- .github/workflows/deploy.yml: deploys main to gh-pages root; deploys all other branches to /previews/<branch>/
 - privacy-policy.html: GDPR/CCPA-aligned policy covering data collection,
   third-party services, cookies, retention, and user rights
 - accessibility-statement.html: WCAG 2.1 AA conformance statement
@@ -343,7 +317,7 @@ Every push to any branch automatically deploys a live preview. Every push to `ma
 
 Before finishing, verify:
 - [ ] `test-environment` branch exists on GitHub
-- [ ] Both workflow files exist in `.github/workflows/` on the default branch
+- [ ] `.github/workflows/deploy.yml` exists on the default branch
 - [ ] `privacy-policy.html` renders correctly and links back to home
 - [ ] `accessibility-statement.html` renders correctly and links back to home
 - [ ] Cookie consent banner appears on first visit (test by clearing localStorage in devtools)
