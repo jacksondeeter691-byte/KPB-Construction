@@ -1,0 +1,23 @@
+name: Branch Preview Deploy
+
+on:
+  push:
+    branches-ignore:
+      - main  # don't double-deploy main
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy branch preview to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./          # change this if your site is in a subfolder like ./dist or ./public
+          destination_dir: previews/${{ github.ref_name }}
