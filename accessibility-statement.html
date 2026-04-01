@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accessibility Statement | KPB Construction LLC</title>
+<meta name="description" content="KPB Construction LLC accessibility commitment and statement of conformance with WCAG 2.1.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --dark: #1C1C18;
+    --warm: #8B6F47;
+    --accent: #C4873A;
+    --light: #EDE4D4;
+    --muted: #6B6556;
+    --stone: #D4CFC7;
+    --white: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--dark); line-height: 1.7; }
+
+  .skip-link {
+    position: absolute; top: -999px; left: -999px;
+    background: var(--accent); color: #fff;
+    padding: 10px 18px; border-radius: 4px;
+    font-weight: 600; font-size: 0.9rem;
+    text-decoration: none; z-index: 9999;
+  }
+  .skip-link:focus { top: 12px; left: 12px; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+  .topbar { background: var(--dark); padding: 9px 40px; font-size: 12px; color: rgba(245,240,232,0.55); }
+  .topbar a { color: rgba(245,240,232,0.7); text-decoration: none; }
+  .topbar a:hover { color: var(--accent); }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--white); border-bottom: 1px solid var(--stone);
+    padding: 0 40px; display: flex; justify-content: space-between; align-items: center;
+    height: 66px; box-shadow: 0 1px 12px rgba(0,0,0,0.06);
+  }
+  .nav-brand-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--dark); }
+  .nav-brand-sub { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--warm); margin-top: 2px; }
+  .nav-home { font-size: 13px; color: var(--muted); text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: all 0.15s; }
+  .nav-home:hover { color: var(--dark); background: var(--light); }
+
+  .page-hero { background: var(--dark); padding: 60px 40px; border-bottom: 3px solid var(--accent); }
+  .page-hero-inner { max-width: 760px; }
+  .page-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 12px; }
+  .page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.5vw, 44px); font-weight: 700; color: #fff; line-height: 1.15; margin-bottom: 14px; }
+  .page-hero p { font-size: 15px; color: rgba(255,255,255,0.5); font-weight: 300; }
+
+  .content-wrap { max-width: 760px; margin: 0 auto; padding: 60px 40px 80px; }
+  .content-wrap h2 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--dark); margin: 40px 0 12px; padding-bottom: 10px; border-bottom: 2px solid var(--light); }
+  .content-wrap h2:first-child { margin-top: 0; }
+  .content-wrap h3 { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--dark); margin: 24px 0 8px; }
+  .content-wrap p { font-size: 15px; color: var(--muted); margin-bottom: 16px; }
+  .content-wrap ul { margin: 0 0 16px 20px; }
+  .content-wrap ul li { font-size: 15px; color: var(--muted); margin-bottom: 8px; line-height: 1.65; }
+  .content-wrap a { color: var(--accent); text-decoration: underline; }
+  .content-wrap a:hover { color: var(--warm); }
+  .effective-date { font-size: 13px; color: var(--muted); font-style: italic; margin-bottom: 32px; }
+  .info-box { background: var(--light); border-left: 4px solid var(--accent); padding: 18px 22px; border-radius: 0 4px 4px 0; margin: 20px 0; font-size: 14px; color: var(--muted); }
+  .info-box strong { color: var(--dark); }
+
+  .status-badge {
+    display: inline-block; padding: 4px 12px; border-radius: 100px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; margin-bottom: 14px;
+  }
+  .status-partial { background: rgba(196,135,58,0.15); color: var(--accent); border: 1px solid rgba(196,135,58,0.3); }
+
+  footer { background: var(--dark); border-top: 3px solid var(--accent); }
+  .footer-bottom { padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 0.04em; }
+  .footer-bottom a { color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.15s; }
+  .footer-bottom a:hover { color: var(--accent); }
+
+  @media (max-width: 700px) {
+    .topbar, nav, .page-hero, .content-wrap, .footer-bottom { padding-left: 20px; padding-right: 20px; }
+    .page-hero { padding-top: 40px; padding-bottom: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="topbar" role="banner">
+  <span>KPB Construction LLC · Frankton, Indiana</span>
+</div>
+
+<nav role="navigation" aria-label="Main navigation">
+  <div>
+    <div class="nav-brand-name">KPB Construction LLC</div>
+    <div class="nav-brand-sub">Frankton, IN · Patrick Berryman</div>
+  </div>
+  <a href="index.html" class="nav-home">← Back to Home</a>
+</nav>
+
+<div class="page-hero" aria-labelledby="page-title">
+  <div class="page-hero-inner">
+    <div class="page-label">Accessibility</div>
+    <h1 id="page-title">Accessibility Statement</h1>
+    <p>Our commitment to making KPBConstruction.com accessible to everyone.</p>
+  </div>
+</div>
+
+<main id="main-content">
+  <div class="content-wrap">
+
+    <p class="effective-date">Last reviewed: April 1, 2026</p>
+
+    <span class="status-badge status-partial">Partially Conformant</span>
+
+    <h2>Our Commitment</h2>
+    <p>KPB Construction LLC is committed to ensuring that our website is accessible to people with disabilities. We strive to meet the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA, as referenced in Section 508 of the Rehabilitation Act and the Americans with Disabilities Act (ADA).</p>
+    <p>Accessibility is an ongoing effort. We regularly review our website and take steps to improve the experience for all visitors, regardless of ability or assistive technology used.</p>
+
+    <h2>Conformance Status</h2>
+    <p>The website is <strong>partially conformant</strong> with WCAG 2.1 Level AA. "Partially conformant" means that some parts of the content do not fully conform to the accessibility standard. We are actively working to address known gaps.</p>
+
+    <h2>Accessibility Features</h2>
+    <p>The following features are currently implemented on this website:</p>
+
+    <h3>Navigation &amp; Structure</h3>
+    <ul>
+      <li><strong>Skip to content link:</strong> A "Skip to main content" link appears at the top of each page, allowing keyboard users to bypass the navigation bar.</li>
+      <li><strong>Semantic HTML landmarks:</strong> Pages use <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;footer&gt;</code>, and ARIA landmark roles to support screen reader navigation.</li>
+      <li><strong>Logical heading hierarchy:</strong> Content is structured with <code>h1</code> through <code>h4</code> headings in a logical order.</li>
+      <li><strong>Language declaration:</strong> The page language is declared as English (<code>lang="en"</code>).</li>
+    </ul>
+
+    <h3>Keyboard Accessibility</h3>
+    <ul>
+      <li><strong>Focus indicators:</strong> All interactive elements display a visible focus outline when navigated by keyboard.</li>
+      <li><strong>FAQ accordion:</strong> FAQ items use <code>&lt;button&gt;</code> elements with <code>aria-expanded</code> attributes, fully operable by keyboard.</li>
+      <li><strong>Portfolio filters:</strong> Category filter buttons are standard HTML <code>&lt;button&gt;</code> elements, fully keyboard-accessible.</li>
+      <li><strong>Forms:</strong> All form inputs are associated with visible labels via <code>for</code>/<code>id</code> attributes, and forms are fully operable by keyboard.</li>
+    </ul>
+
+    <h3>Images &amp; Media</h3>
+    <ul>
+      <li><strong>Alternative text:</strong> Portfolio and content images include descriptive <code>alt</code> attributes.</li>
+      <li><strong>Decorative elements:</strong> Decorative emoji icons are marked with <code>aria-hidden="true"</code> to avoid unnecessary screen reader verbosity.</li>
+    </ul>
+
+    <h3>Color &amp; Contrast</h3>
+    <ul>
+      <li>Body text on light backgrounds meets the WCAG 4.5:1 contrast ratio requirement for normal text.</li>
+      <li>Primary call-to-action buttons use sufficient color contrast between text and background.</li>
+    </ul>
+
+    <h3>Cookie Consent</h3>
+    <ul>
+      <li>The cookie consent banner is keyboard accessible and includes appropriate ARIA attributes (<code>role="dialog"</code>, <code>aria-label</code>).</li>
+    </ul>
+
+    <h2>Known Limitations</h2>
+    <p>We are aware of the following accessibility gaps and are working to address them:</p>
+    <ul>
+      <li><strong>Portfolio lightbox (Frankton page):</strong> The image lightbox modal may not fully trap keyboard focus while open. We are evaluating a focus-trap solution.</li>
+      <li><strong>Portfolio cards (Carmel page):</strong> Clickable portfolio cards use <code>onclick</code> handlers; we are adding <code>role="button"</code> and keyboard event support.</li>
+      <li><strong>Mobile hamburger menu:</strong> The mobile navigation toggle does not currently announce its open/closed state via <code>aria-expanded</code>. This will be addressed in a future update.</li>
+      <li><strong>Live chat widget (Tawk.to):</strong> The Tawk.to chat widget is a third-party component. Accessibility of the widget itself is subject to Tawk.to's implementation. We encourage users who experience issues to contact us directly by phone or email instead.</li>
+    </ul>
+
+    <h2>Assistive Technologies Tested</h2>
+    <p>We test our website with the following assistive technologies:</p>
+    <ul>
+      <li>NVDA screen reader on Windows (Chrome)</li>
+      <li>VoiceOver on macOS (Safari)</li>
+      <li>Keyboard-only navigation (Tab, Shift+Tab, Enter, Space, Escape)</li>
+    </ul>
+
+    <h2>Feedback and Contact</h2>
+    <p>We welcome your feedback on the accessibility of this website. If you experience barriers or have suggestions for improvement, please contact us:</p>
+    <div class="info-box">
+      <strong>KPB Construction LLC</strong><br>
+      Phone: <a href="tel:7658812658">(765) 881-2658</a><br>
+      Email: info@kpbconstruction.com<br>
+      Address: 207 Short Street, Frankton, IN 46044
+    </div>
+    <p>We aim to respond to accessibility feedback within 5 business days. If you are unable to access any content or use any feature of our website due to a disability, please contact us and we will assist you directly.</p>
+
+    <h2>Formal Complaints</h2>
+    <p>If you are not satisfied with our response, you may contact the relevant enforcement body in your jurisdiction. In the United States, this may include the U.S. Department of Justice Civil Rights Division or the U.S. Access Board.</p>
+
+    <h2>Technical Specifications</h2>
+    <p>This website relies on the following technologies for conformance with WCAG 2.1:</p>
+    <ul>
+      <li>HTML5</li>
+      <li>CSS3</li>
+      <li>JavaScript (vanilla)</li>
+      <li>WAI-ARIA 1.1</li>
+    </ul>
+
+  </div>
+</main>
+
+<footer role="contentinfo">
+  <div class="footer-bottom">
+    <span>© 2026 KPB Construction LLC · Frankton, Indiana</span>
+    <nav aria-label="Legal navigation">
+      <a href="privacy-policy.html">Privacy Policy</a> &nbsp;·&nbsp;
+      <a href="accessibility-statement.html">Accessibility</a> &nbsp;·&nbsp;
+      <a href="index.html">Home</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

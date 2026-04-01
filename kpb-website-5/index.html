@@ -585,9 +585,36 @@
   .hero-inner h1 { animation-delay: 0.15s; }
   .hero-inner p { animation-delay: 0.25s; }
   .hero-inner .hero-btns { animation-delay: 0.35s; }
+
+  /* ── ACCESSIBILITY ENHANCEMENTS ── */
+  .skip-link {
+    position: absolute; top: -999px; left: -999px;
+    background: var(--gold); color: var(--navy);
+    padding: 10px 18px; border-radius: 6px;
+    font-weight: 700; font-size: 0.9rem;
+    text-decoration: none; z-index: 9999;
+  }
+  .skip-link:focus { top: 12px; left: 12px; }
+
+  :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+  :focus:not(:focus-visible) { outline: none; }
+
+  /* FAQ button reset */
+  button.faq-q {
+    width: 100%; background: none; border: none;
+    text-align: left; font-family: 'DM Sans', sans-serif;
+    cursor: pointer; padding: 0;
+  }
+
+  /* Footer legal links */
+  .footer-legal { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .footer-legal a { color: var(--gold-light); text-decoration: none; font-size: 0.8rem; }
+  .footer-legal a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
 <!-- TOPBAR -->
 <div class="topbar">
@@ -596,7 +623,7 @@
 </div>
 
 <!-- NAVBAR -->
-<nav>
+<nav role="navigation" aria-label="Main navigation">
   <div class="logo">KPB <span>Construction</span></div>
   <ul>
     <li><a href="#services">Services</a></li>
@@ -610,6 +637,9 @@
     <span></span><span></span><span></span>
   </div>
 </nav>
+
+<!-- MAIN CONTENT -->
+<main id="main-content">
 
 <!-- HERO -->
 <section class="hero">
@@ -877,39 +907,39 @@
   <p class="subtext">Everything you might want to know before reaching out.</p>
   <div class="faq-list">
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        How do I get a quote? <span class="toggle">+</span>
-      </div>
+      <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+        How do I get a quote? <span class="toggle" aria-hidden="true">+</span>
+      </button>
       <div class="faq-a">Just give us a call or fill out the contact form below. We'll schedule a time to look at your project and provide a free, no-obligation estimate — usually within 1–2 business days.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        What areas do you serve? <span class="toggle">+</span>
-      </div>
+      <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+        What areas do you serve? <span class="toggle" aria-hidden="true">+</span>
+      </button>
       <div class="faq-a">We primarily serve Carmel, IN and surrounding communities including Westfield, Fishers, Noblesville, Zionsville, and parts of Indianapolis. Not sure if we cover your area? Just ask!</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        Are you background checked and insured? <span class="toggle">+</span>
-      </div>
+      <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+        Are you background checked and insured? <span class="toggle" aria-hidden="true">+</span>
+      </button>
       <div class="faq-a">Yes — we are background checked. We take your safety and trust very seriously, and we're happy to provide documentation upon request.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        What size projects do you take on? <span class="toggle">+</span>
-      </div>
+      <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+        What size projects do you take on? <span class="toggle" aria-hidden="true">+</span>
+      </button>
       <div class="faq-a">We work on everything from small handyman tasks (furniture assembly, fixture swaps, minor repairs) to larger projects like bathroom updates, deck repairs, and interior remodeling. If you're not sure whether your project is a fit, just reach out!</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        How quickly can you get started? <span class="toggle">+</span>
-      </div>
+      <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+        How quickly can you get started? <span class="toggle" aria-hidden="true">+</span>
+      </button>
       <div class="faq-a">It depends on current availability, but we do our best to accommodate urgent requests. After your estimate is approved, we'll schedule your project as quickly as possible.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        Do you offer any guarantees? <span class="toggle">+</span>
-      </div>
+      <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+        Do you offer any guarantees? <span class="toggle" aria-hidden="true">+</span>
+      </button>
       <div class="faq-a">Absolutely. Your satisfaction is our #1 priority. If something isn't right, we'll make it right. We stand behind our work and want every customer to love their results.</div>
     </div>
   </div>
@@ -967,27 +997,27 @@
       <h3>Tell Us About Your Project</h3>
       <div class="form-row">
         <div class="form-group">
-          <label>First Name *</label>
-          <input type="text" placeholder="John">
+          <label for="c-fname">First Name *</label>
+          <input id="c-fname" type="text" placeholder="John" autocomplete="given-name">
         </div>
         <div class="form-group">
-          <label>Last Name *</label>
-          <input type="text" placeholder="Smith">
+          <label for="c-lname">Last Name *</label>
+          <input id="c-lname" type="text" placeholder="Smith" autocomplete="family-name">
         </div>
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label>Phone Number *</label>
-          <input type="tel" placeholder="(317) 555-0100">
+          <label for="c-phone">Phone Number *</label>
+          <input id="c-phone" type="tel" placeholder="(317) 555-0100" autocomplete="tel">
         </div>
         <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" placeholder="john@email.com">
+          <label for="c-email">Email Address</label>
+          <input id="c-email" type="email" placeholder="john@email.com" autocomplete="email">
         </div>
       </div>
       <div class="form-group">
-        <label>Service Needed</label>
-        <select>
+        <label for="c-service">Service Needed</label>
+        <select id="c-service">
           <option value="">Select a service...</option>
           <option>General Repairs</option>
           <option>Installations</option>
@@ -999,8 +1029,8 @@
         </select>
       </div>
       <div class="form-group">
-        <label>Project Description</label>
-        <textarea placeholder="Tell us a bit about what you need done and your location in Carmel or surrounding areas..."></textarea>
+        <label for="c-desc">Project Description</label>
+        <textarea id="c-desc" placeholder="Tell us a bit about what you need done and your location in Carmel or surrounding areas..."></textarea>
       </div>
       <button class="btn-form">📩 Send My Free Estimate Request</button>
       <p style="font-size:0.78rem;color:var(--slate);text-align:center;margin-top:12px;">We typically respond within a few hours. No obligation, no spam.</p>
@@ -1190,8 +1220,10 @@
   <div class="chat-footer">Replies sent via text · Usually within a few hours</div>
 </div>
 
+</main><!-- end #main-content -->
+
 <!-- FOOTER -->
-<footer>
+<footer role="contentinfo">
   <div class="footer-inner">
     <div class="footer-brand">
       <span class="logo">KPB <span>Construction</span></span>
@@ -1220,7 +1252,10 @@
   </div>
   <div class="footer-bottom">
     <span>© 2025 KPB Construction LLC · Carmel, Indiana</span>
-    <span>Handyman Carmel IN · Construction Services Carmel Indiana · Home Repair Carmel IN</span>
+    <div class="footer-legal">
+      <a href="../privacy-policy.html">Privacy Policy</a>
+      <a href="../accessibility-statement.html">Accessibility</a>
+    </div>
     <a href="tel:+13178675309">(317) 867-5309</a>
   </div>
 </footer>
@@ -1234,6 +1269,7 @@
   function toggleFaq(el) {
     const item = el.closest('.faq-item');
     item.classList.toggle('open');
+    el.setAttribute('aria-expanded', item.classList.contains('open') ? 'true' : 'false');
   }
 
   // Portfolio filter
@@ -1304,3 +1340,6 @@
     document.getElementById('smsprompt').style.display = 'block';
   }
 </script>
+
+<!-- Cookie consent – conditionally loads Tawk.to chat after visitor opts in -->
+<script src="../cookie-consent.js"></script>
