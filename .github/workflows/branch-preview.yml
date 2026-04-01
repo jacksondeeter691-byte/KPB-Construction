@@ -19,5 +19,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./          # change this if your site is in a subfolder like ./dist or ./public
+          publish_dir: ./
+          keep_files: true  # preserve main site and other branch previews
           destination_dir: previews/${{ github.ref_name }}
